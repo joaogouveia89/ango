@@ -1,19 +1,3 @@
-(function($) {
-    $.fn.invisible = function() {
-        return this.each(function() {
-            $(this).css("visibility", "hidden");
-        });
-    };
-    $.fn.visible = function() {
-        return this.each(function() {
-            $(this).css("visibility", "visible");
-        });
-    };
-}(jQuery));
-
-function handleDismiss(){
-	$("#erroralert").invisible();
-}
 
 function handleClick(){
 
@@ -44,7 +28,6 @@ function handleClick(){
 		return;
 	}
 
-	$("#erroralert").invisible();
 	$("#results").show();
 	$("#bt_calculate").prop('disabled', true);
 	$("#input-entrada-de-caixa").prop('disabled', true);
@@ -62,15 +45,9 @@ function handleClick(){
 	$("#andressaresult").append("\u20ac " + andressaSlice);
 }
 
-function moneymask(){
-	console.log("test");
-}
-
 $(document).ready(function(){
-	$(".money-input").on("keydown", moneymask);
+	Inputmask({"alias": "currency"}).mask(".money-input");
 	$("#bt_calculate").click(handleClick);
 	$("#results").hide();
-	$("#erroralert").invisible();
-	$("#alertDismiss").click(handleDismiss);
 });
 
