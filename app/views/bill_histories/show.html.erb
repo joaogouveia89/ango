@@ -1,0 +1,17 @@
+<h1>Registro de conta de <%= Bill.find(@bill_history.bill_id).name %></h1>
+
+<p>
+ Mês: <%= @bill_history.month %>
+</p>
+
+<p>
+ Ano: <%= @bill_history.year %>
+</p>
+
+<p>
+ Valor: <%= @bill_history.value %>
+</p>
+
+<%= link_to 'Back', bill_histories_path %>
+<%= link_to "Edit", edit_bill_history_path(@bill_history) %>
+<%= link_to 'Delete', bill_history_path(@bill_history.id), method: :delete, data: {confirm: "tem certeza que deseja excluir?"} %>

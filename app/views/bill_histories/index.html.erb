@@ -1,0 +1,20 @@
+<h1>Registros de contas</h1>
+<table>
+ <tr>
+  <th>Conta</th>
+  <th>Mes</th>
+  <th>Ano</th>
+  <th>Valor</th>
+ </tr>
+ <% @bill_histories.each do |bill_history| %>
+ <tr>
+  <td><%= Bill.find(bill_history.bill_id).name %></td>
+  <td><%= bill_history.month %></td>
+  <td><%= bill_history.year %></td>
+  <td><%= bill_history.value %></td>
+  <td><%= link_to 'Edit', edit_bill_history_path(bill_history) %></td>
+  <td><%= link_to 'Show', bill_history_path(bill_history.id) %></td>
+  <td><%= link_to 'Delete', bill_history_path(bill_history.id), method: :delete, data: {confirm: "tem certeza que deseja excluir?"} %></td>
+ </tr>
+ <% end %>
+</table>
