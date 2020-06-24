@@ -1,0 +1,87 @@
+<div class="container">
+	<div id="erroralert">
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+		  <strong>Erro!</strong> Entrada de caixa não pode ser zero!
+		  <button type="button" class="close"aria-label="Close" id="alertDismiss">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+	</div>
+  	<div class="jumbotron text-center appheader">
+	  <h1 class="display-4">Distribuição de rendimentos da casa</h1>
+	  <p class="lead">Executar isso quando ja tiver arrendamento e todas as contas pagas</p>
+	  <p class="lead">Nada daqui será salvo, essa página só fará os calculos e os discartará assim que for recarregada</p>
+	</div>
+	<div class="row">
+		<div class="col">
+			<section id="sectionentradadecaixa">
+				<label for="input-entrada-de-caixa">Entrada de caixa</label>
+				<div class="input-group input-group-lg">
+				  <div class="input-group-addon eurosymbolplace">
+				    <span class="input-group-text" id="inputGroup-sizing-lg">€</span>
+				  </div>
+				  <input id="input-entrada-de-caixa" type="text" class="money-input form-control" aria-label="Entrada de caixa" aria-describedby="inputGroup-sizing-lg" placeholder="00.00" pattern="^\d+(\.)\d{2}$">
+				</div>
+			</section>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+				<section id="sectionemprestimosjoao">
+					<label for="input-emprestimos-joao">Emprestimos João</label>
+					<div class="input-group input-group-lg">
+					  <div class="input-group-addon eurosymbolplace">
+					    <span class="input-group-text" id="inputGroup-sizing-lg">€</span>
+					  </div>
+					  <input id="input-emprestimos-joao" type="text" class="money-input form-control" aria-label="Entrada de caixa" aria-describedby="inputGroup-sizing-lg" placeholder="00.00" pattern="^\d+(\.)\d{2}$">
+					</div>
+				</section>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+				<section id="sectionemprestimosandressa">
+					<label for="input-emprestimos-andressa">Emprestimos Andressa</label>
+					<div class="input-group input-group-lg">
+					  <div class="input-group-addon eurosymbolplace">
+					    <span class="input-group-text eurosymbolplace" id="inputGroup-sizing-lg">€</span>
+					  </div>
+					  <input id="input-emprestimos-andressa" type="text" class="money-input form-control" aria-label="Entrada de caixa" aria-describedby="inputGroup-sizing-lg" placeholder="00.00">
+					</div>
+				</section>
+		</div>
+	</div>
+	<div class="row justify-content-lg-center">
+		<div class="col col-lg-2">
+			<button id="bt_calculate" type="button" class="btn btn-success btn-lg">Calcular</button>
+		</div>
+	</div>
+	<div id="results">
+		<div class="row">
+			<div class="col">
+				<table class="table">
+				  <thead>
+				    <tr>
+				      <th scope="col">Beneficiário</th>
+				      <th scope="col">Valor a Transferir</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <td>Casa</td>
+				      <td id="casaresult"></td>
+				    </tr>
+				    <tr>
+				      <td>João</td>
+				      <td id="joaoresult"></td>
+				    </tr>
+				    <tr>
+				      <td>Andressa</td>
+				      <td id="andressaresult"></td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
