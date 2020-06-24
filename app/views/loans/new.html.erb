@@ -1,0 +1,29 @@
+<h1>Novo Emprestimo</h1>
+
+<% if @loan.errors.any? %>
+	 <h2>Erros:</h2>
+	 <ul>
+	 <% @loan.errors.full_messages.each do |msg|%>
+	 <li><%= msg %></li>
+	 <% end %>
+	 </ul>
+<% end %>
+
+<%= form_for @loan do |f| %>
+	<p>
+	  <%= f.label :descricao %>
+	  <%= f.text_area :description %>
+	 </p>
+	 <p>
+	  <%= f.label :valor_do_emprestimo %>
+	  <%= f.number_field :loaned_amount, value: number_to_currency(f.object.loaned_amount.to_f, delimiter: '', unit: ''), step: :any %>
+	 </p>
+	 <p>
+	  <%= f.label :valor_da_parcela %>
+	  <%= f.number_field :default_installment, value: number_to_currency(f.object.default_installment.to_f, delimiter: '', unit: ''), step: :any %>
+	 </p>
+	 <p>
+	  <%= f.submit %>
+	 </p>
+	 
+<% end %>

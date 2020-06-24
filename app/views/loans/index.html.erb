@@ -1,0 +1,19 @@
+<h1>Lista de empréstimos</h1>
+<table>
+ <tr>
+  <th>Descrição</th>
+  <th>Valor emprestado</th>
+  <th>Parcela</th>
+  <th>Criado em</th>
+  <th>Ações</th>
+ </tr>
+ <% @loans.each do |loan| %>
+ <tr>
+  <td><%= loan.description %></td>
+  <td><%= loan.loaned_amount %></td>
+   <td><%= loan.default_installment %></td>
+  <td><%= loan.created_at.strftime("%d/%m/%Y") %></td>
+  <td><%= link_to 'Detalhes', loan_path(loan) %> <%= link_to 'Excluir', loan_path(loan), method: :delete, data: {confirm: "Deseja mesmo excluir esse emprestimo?"} %></td>
+ </tr>
+ <% end %>
+</table>
