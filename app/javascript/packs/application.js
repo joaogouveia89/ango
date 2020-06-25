@@ -11,6 +11,7 @@ require("bootstrap");
 require("chartkick")
 require("chart.js")
 var Inputmask = require('inputmask');
+require("bootstrap-datepicker")
 require("../custom/distribution_calculator");
 require("../custom/year_average");
 require("../custom/bill_history");

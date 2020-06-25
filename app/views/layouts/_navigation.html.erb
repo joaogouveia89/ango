@@ -22,7 +22,6 @@
             <li><%= link_to "Novo Registro", new_bill_history_path %></li>
             <li><%= link_to "Média Anual", "/year_average/" + Time.current.year.to_s %></li>
             <li><%= link_to "Pesquisa", "/get_bill_history/" + Time.current.month.to_s + "/" + Time.current.year.to_s %></li>
-            <li><%= link_to "Histórico", bill_histories_path %></li>
           </ul>
         </li>
         <li class="dropdown">
