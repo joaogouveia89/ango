@@ -45,7 +45,7 @@ function handleClick(){
 	$("#andressaresult").append("\u20ac " + andressaSlice);
 }
 
-$(document).ready(function(){
+$(document).on('turbolinks:load',function(){
 	Inputmask({"alias": "currency"}).mask(".money-input");
 	$("#bt_calculate").click(handleClick);
 	$("#results").hide();

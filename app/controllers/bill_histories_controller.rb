@@ -2,7 +2,7 @@ class BillHistoriesController < ApplicationController
 	before_action :set_bill_history, only: [:edit, :update, :show, :destroy]
 
 	def index
-		@bill_histories = BillHistory.all
+		@bill_histories = BillHistory.order(year: :desc, month: :desc)
 	end
 
 	def new
@@ -16,6 +16,9 @@ class BillHistoriesController < ApplicationController
  			redirect_to bill_history_path(@bill_history)
  		else
  			render 'new'
+
+ 			#https://stackoverflow.com/questions/35899433/how-to-render-partial-on-the-same-page-after-clicking-on-link-to-with-ajax
+ 			#read this
  		end
  	end
 
@@ -39,6 +42,20 @@ class BillHistoriesController < ApplicationController
 		@bill_history.destroy
 		flash[:notice] = "Registro de conta excluído"
 		redirect_to bill_histories_path
+	end
+
+	def year_average
+		calculate_year_average params[:year]
+	end
+
+	def year_average
+		@year = params[:year]
+		@averages = BillHistory.where(:year=> @year).group(:bill_id).average(:value)
+		@grid_size = @averages.count / 2
+		if @grid_size % 2 != 0
+			@grid_size = @grid_size + 1
+		end
+		render 'year_average'
 	end
 
  	private

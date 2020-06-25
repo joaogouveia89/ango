@@ -9,6 +9,7 @@ $white: #FFFFFF;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap/grid";
 
 #logo {
  float: left;
@@ -28,3 +29,14 @@ $white: #FFFFFF;
 #results{ margin-top: 30px; }
 label{font-size: 30px;}
 #bt_calculate{margin-top: 30px;}
+
+.title_padding{
+	padding-bottom: 50px;
+}
+.items_grid_padding{
+	padding-bottom: 40px;
+}
+.grid_label{
+	font-size: 1.7em;
+	text-align: center;
+}

@@ -5,5 +5,8 @@ Rails.application.routes.draw do
   get 'distribution_calculation', to: 'pages#distribution_calculation'
 
   resources :bill_histories
+
+  get 'year_average/:year' => "bill_histories#year_average"
+
   resources :loans, except: [:edit, :update]
 end
