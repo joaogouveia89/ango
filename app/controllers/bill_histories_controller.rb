@@ -1,6 +1,21 @@
 class BillHistoriesController < ApplicationController
 	before_action :set_bill_history, only: [:edit, :update, :show, :destroy]
 
+	$monthsVerbose = {
+		1 => "Janeiro",
+		2 => "Fevereiro",
+		3 => "Março",
+		4 => "Abril",
+		5 => "Maio",
+		6 => "Junho",
+		7 => "Julho",
+		8 => "Agosto",
+		9 => "Setembro",
+		10 => "Outubro",
+		11 => "Novembro",
+		12 => "Dezembro"
+	}
+
 	def index
 		@bill_histories = BillHistory.order(year: :desc, month: :desc)
 	end
@@ -45,17 +60,19 @@ class BillHistoriesController < ApplicationController
 	end
 
 	def year_average
-		calculate_year_average params[:year]
-	end
-
-	def year_average
 		@year = params[:year]
 		@averages = BillHistory.where(:year=> @year).group(:bill_id).average(:value)
-		@grid_size = @averages.count / 2
-		if @grid_size % 2 != 0
-			@grid_size = @grid_size + 1
-		end
+		@grid_size = calculate_grid_size @averages.count
 		render 'year_average'
+	end
+
+	def get_bill_history
+		@year = params[:year]
+		@month = params[:month]
+		@bills = BillHistory.where(:year=> @year, :month=> @month)
+		@grid_size = calculate_grid_size @bills.count
+		@sum = @bills.sum(:value)
+		render 'bill_history'
 	end
 
  	private
@@ -66,5 +83,13 @@ class BillHistoriesController < ApplicationController
 
  	def bill_history_params
  		params.require(:bill_history).permit(:bill_id, :month, :year, :value)
+ 	end
+
+ 	def calculate_grid_size items_count
+ 		@grid_size = items_count / 2
+		if @grid_size % 2 != 0
+			@grid_size = @grid_size + 1
+		end
+		@grid_size
  	end
 end

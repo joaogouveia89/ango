@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :bill_histories
 
   get 'year_average/:year' => "bill_histories#year_average"
+  get 'get_bill_history/:month/:year' =>"bill_histories#get_bill_history"
 
   resources :loans, except: [:edit, :update]
 end

@@ -1,0 +1,63 @@
+<div class="container">
+<h1 class="text-center title_padding">Registro de Contas</h1>
+<div class="row items_grid_padding text-center">
+	<div class="col-lg-6">
+		<h4 class="text-center">Mês</h4>
+		<!-- TODO: REFACTOR THIS, THE CUSTOM SELECT CLASS IS NOT WORKING, FIND A WAY TO MAKE BOOTSTRAP CUSTOM FORMS TO WORK WITH RAILS  -->
+		<select class="custom-select" name="month", id="bill_history_month_select">
+			<% $monthsVerbose.each do |number, verbose| %>
+				<option <% if number == @month.to_i %> selected <% end %> value=<%= number %>><%= verbose %></option>
+			<% end %>
+		</select>
+	</div>
+	<div class="col-lg-6">
+		<h4 class="text-center">Ano</h4>
+		<!-- TODO: REFACTOR THIS, THE CUSTOM SELECT CLASS IS NOT WORKING, FIND A WAY TO MAKE BOOTSTRAP CUSTOM FORMS TO WORK WITH RAILS  -->
+		<select class="custom-select" name="year", id="bill_history_year_select">
+			<% (Time.current.year..2019).step(-1).to_a.each do |year| %>
+				<option <% if year == @year.to_i %> selected <% end %> value=<%= year %>><%= year %></option>
+			<% end %>
+		</select>
+	</div>
+</div>
+
+<% collumn = 0  %>
+<% row = 0  %>
+<% if @bills.count != 0 %>
+	<div class="row align-items-center items_grid_padding">
+<% else %>
+<h1 class="text-center">Não há registros para este período selecionado</h1>
+<% end %>
+<% @bills.each do |bill| %>
+	<% if collumn < @grid_size %>
+		<div align="center" class=<%= "col-lg-" + (12/@grid_size).to_s %>>
+			<% @bill = Bill.find(bill.bill_id) %>
+			<p><%= image_tag(@bill.image_icon + ".png", :alt => "icon",  width: "100", height: "100") %></p>
+			<p class="grid_label"><%= @bill.name %></p>
+			<p class="grid_label">€ <%= number_with_precision(bill.value, :precision => 2) %></p>
+			<% collumn = collumn + 1 %>
+		</div>
+	<% else %>
+		</div>
+		<div class="row align-items-center items_grid_padding">
+		<% collumn = 0 %>
+		<% row = row + 1 %>
+		<div align="center" class=<%= "col-lg-" + (12/@grid_size).to_s %>>
+			<% @bill = Bill.find(bill.bill_id) %>
+			<p><%= image_tag(@bill.image_icon + ".png", :alt => "icon",  width: "100", height: "100") %></p>
+			<p class="grid_label"><%= @bill.name %></p>
+			<p class="grid_label">€ <%= number_with_precision(bill.value, :precision => 2) %></p>
+			<% collumn = collumn + 1 %>
+		</div>
+	<% end %>
+<% end %>
+<% if @bills.count != 0 %>
+	</div>
+	<hr/>
+	<div class="row align-items-center items_grid_padding">
+		<div align="center" class="col-lg-12">
+			<p class="grid_label">Total: € <%= @sum %></p>
+		</div>
+	</div>
+<% end %>
+</div>

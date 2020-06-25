@@ -11,6 +11,7 @@ require("bootstrap");
 var Inputmask = require('inputmask');
 require("../custom/distribution_calculator");
 require("../custom/year_average");
+require("../custom/bill_history");
 
 
 
