@@ -63,6 +63,12 @@ class BillHistoriesController < ApplicationController
 		@year = params[:year]
 		@averages = BillHistory.where(:year=> @year).group(:bill_id).average(:value)
 		@grid_size = calculate_grid_size @averages.count
+		@averages_chart_data = {}
+		@averages.each do |bill, average|
+			bill_name = Bill.find(bill).name
+			@averages_chart_data[bill_name] = average
+		end
+		@sum = @averages.map { |key, value| value }.sum
 		render 'year_average'
 	end
 
