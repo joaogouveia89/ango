@@ -14,12 +14,13 @@
        <% @loans.each do |loan| %>
        <tr class="text-center">
         <td><%= loan.description %></td>
-        <td>€ <%= loan.loaned_amount %></td>
-         <td>€ <%= loan.default_installment %></td>
+        <td>€ <%= number_with_precision(loan.loaned_amount, :precision => 2) %></td>
+         <td>€ <%= number_with_precision(loan.default_installment, :precision => 2) %></td>
         <td><%= loan.created_at.strftime("%d/%m/%Y") %></td>
-        <td><%= link_to 'Pagar Parcela', loan_path(loan), class: "btn btn-success" %> &nbsp;&nbsp;<%= link_to 'Detalhes', loan_path(loan), class: "btn btn-primary" %> &nbsp;&nbsp;<%= link_to 'Excluir', loan_path(loan), class: "btn btn-danger", method: :delete, data: {confirm: "Deseja mesmo excluir esse emprestimo?"} %></td>
+        <td><%= link_to 'Pagar Parcela', new_loan_payment_path(:loan_id => loan.id), class: "btn btn-success" %> &nbsp;&nbsp;<%= link_to 'Detalhes', loan_path(loan), class: "btn btn-primary" %> &nbsp;&nbsp;<%= link_to 'Excluir', loan_path(loan), class: "btn btn-danger", method: :delete, data: {confirm: "Deseja mesmo excluir esse emprestimo?"} %></td>
        </tr>
        <% end %>
     </tbody>
   </table>
 </div>
+ 

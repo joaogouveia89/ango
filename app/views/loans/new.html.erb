@@ -1,29 +1,56 @@
-<h1>Novo Emprestimo</h1>
 
 <% if @loan.errors.any? %>
-	 <h2>Erros:</h2>
+	 <h2>Erros ao salvar o registro de conta:</h2>
 	 <ul>
 	 <% @loan.errors.full_messages.each do |msg|%>
 	 <li><%= msg %></li>
 	 <% end %>
 	 </ul>
 <% end %>
-
 <%= form_for @loan do |f| %>
-	<p>
-	  <%= f.label :descricao %>
-	  <%= f.text_area :description %>
-	 </p>
-	 <p>
-	  <%= f.label :valor_do_emprestimo %>
-	  <%= f.number_field :loaned_amount, value: number_to_currency(f.object.loaned_amount.to_f, delimiter: '', unit: ''), step: :any %>
-	 </p>
-	 <p>
-	  <%= f.label :valor_da_parcela %>
-	  <%= f.number_field :default_installment, value: number_to_currency(f.object.default_installment.to_f, delimiter: '', unit: ''), step: :any %>
-	 </p>
-	 <p>
-	  <%= f.submit %>
-	 </p>
-	 
+<div class="container">
+	<h1 class="text-center title_padding">Novo Emprestimo</h1>
+	<div class="row text-center items_grid_padding">
+		<div class="col-lg-12">
+		  <p>
+			  <%= f.label :descricao %><br/>
+			  <%= f.text_field :description, class: 'form-control'%>
+		  </p>
+		</div>
+	</div>
+	<div class="row text-center items_grid_padding">
+		<div class="col-lg-12">
+			  <p>
+			  	<%= f.label :valor_do_emprestimo  %><br/>
+			  	<div class="input-group input-group-lg">
+				  <div class="input-group-addon eurosymbolplace">
+				    <span class="input-group-text eurosymbolplace" id="inputGroup-sizing-lg">€</span>
+				  </div>
+				  <%= f.text_field :loaned_amount, class: 'form-control money-input ', placeholder: '00.00'  %>
+				</div>
+			  </p>
+		</div>
+	</div>
+	<div class="row text-center items_grid_padding">
+		<div class="col-lg-12">
+			  <p>
+			  	<%= f.label :valor_da_parcela  %><br/>
+			  	<div class="input-group input-group-lg">
+				  <div class="input-group-addon eurosymbolplace">
+				    <span class="input-group-text eurosymbolplace" id="inputGroup-sizing-lg">€</span>
+				  </div>
+				  <%= f.text_field :default_installment, class: 'form-control money-input ', placeholder: '00.00'  %>
+				</div>
+			  </p>
+		</div>
+	</div>
+	<div class="row text-center">
+		<div class="col-lg-12">
+			    <p>
+				 <%= f.submit 'Salvar', :class => 'btn btn-success btn-lg btn-block' %>
+				</p>
+		</div>
+	</div>
+</div>
+ </p>
 <% end %>

@@ -1,19 +1,72 @@
-<h1>Descrição do Emprestimo</h1>
-<p>
- Descrição: <%= @loan.description %>
-</p>
-<p>
- Montante : &#8364; <%= @loan.loaned_amount %>
-</p>
-<p>
- Parcela Padrão : &#8364; <%= @loan.default_installment %>
-</p>
-
-<p><%= link_to "Pagar parcela", new_loan_payment_path(:loan_id => @loan.id) %></p>
-
-<p>
-Data de cadastro : <%= @loan.created_at.strftime("%d/%m/%Y") %>
-</p>
-<p>
-	<%= link_to 'Excluir', loan_path(@loan), method: :delete, data: {confirm: "Deseja mesmo excluir esse emprestimo?"} %>
-</p>
+<div class="container">
+	<h1 class="text-center title_padding">Empréstimo <%= @loan.description %></h1>
+	<div class="row text-center font-size-25">
+		<div class="col-sm-6">
+			Montante
+		</div>
+		<div class="col-sm-6">
+			&#8364; <%= number_with_precision(@loan.loaned_amount, :precision => 2) %>
+		</div>
+	</div>
+	<hr/>
+	<div class="row text-center font-size-25">
+		<div class="col-sm-6">
+			Parcela Padrão
+		</div>
+		<div class="col-sm-6">
+			&#8364; <%= number_with_precision(@loan.default_installment , :precision => 2) %>
+		</div>
+	</div>
+	<hr/>
+	<div class="row text-center font-size-25">
+		<div class="col-sm-6">
+			Dívida
+		</div>
+		<div class="col-sm-6">
+			&#8364; <%= number_with_precision(@debt , :precision => 2) %>
+		</div>
+	</div>
+	<hr/>
+	<div class="row text-center font-size-25">
+		<div class="col-sm-6">
+			Data de cadastro
+		</div>
+		<div class="col-sm-6">
+			<%= @loan.created_at.strftime("%d/%m/%Y") %>
+		</div>
+	</div>
+	<hr/>
+	<div class="row text-center title_padding">
+		<div class="col-sm-12">
+			<%= link_to "Pagar parcela", new_loan_payment_path(:loan_id => @loan.id), class: "btn btn-success margin-right-25" %> <%= link_to 'Voltar', loans_path, class: "btn btn-primary margin-right-25"  %> <%= link_to 'Excluir', loan_path(@loan), method: :delete, data: {confirm: "Deseja mesmo excluir esse emprestimo?"}, class: "btn btn-danger" %>
+		</div>
+	</div>
+	<hr/>
+	<div class="row text-center">
+		<div class="col-sm-12">
+			<h2 class="title_padding"">Histórico de Pagamentos</h2>
+			<table class="table table-striped">
+				<thead>
+			       <tr>
+			        <th class="text-center" scope="col">Data de Pagamento</th>
+			        <th class="text-center" scope="col">Valor Pago</th>
+			       </tr>
+			    </thead>
+			    <tbody>
+				    	<% if @payments.count == 0 %>
+				    	<tr class="text-center">
+				    		<td colspan="2">Não existe nenhum pagamento para este empréstimo</td>
+			    		</tr>
+				    	<% else %>
+				    	 <% @payments.each do |payment| %>
+				    	 	<tr class="text-center">
+				    	 		<td><%= payment.created_at.strftime("%d/%m/%Y") %></td>
+				    	 		<td><%= payment.payed_value %></td>
+				    	 	</tr>
+				    	 <% end %>
+				    	<% end %>
+			    </tbody>
+			</table>
+		</div>
+	</div>
+</div>
