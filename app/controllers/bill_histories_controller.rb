@@ -43,6 +43,10 @@ class BillHistoriesController < ApplicationController
  	def edit
 	end
 
+	def get_month_verbose month_number
+		$monthsVerbose[month_number]
+	end
+
 	def update
 		if @bill_history.update(bill_history_params)
 			flash[:notice] = "Conta atualizada com sucesso"

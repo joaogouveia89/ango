@@ -4,7 +4,7 @@
 	<div class="col-lg-6">
 		<h4 class="text-center">Mês</h4>
 		<!-- TODO: REFACTOR THIS, THE CUSTOM SELECT CLASS IS NOT WORKING, FIND A WAY TO MAKE BOOTSTRAP CUSTOM FORMS TO WORK WITH RAILS  -->
-		<select class="custom-select" name="month", id="bill_history_month_select">
+		<select class="form-control" name="month", id="bill_history_month_select">
 			<% $monthsVerbose.each do |number, verbose| %>
 				<option <% if number == @month.to_i %> selected <% end %> value=<%= number %>><%= verbose %></option>
 			<% end %>
@@ -13,7 +13,7 @@
 	<div class="col-lg-6">
 		<h4 class="text-center">Ano</h4>
 		<!-- TODO: REFACTOR THIS, THE CUSTOM SELECT CLASS IS NOT WORKING, FIND A WAY TO MAKE BOOTSTRAP CUSTOM FORMS TO WORK WITH RAILS  -->
-		<select class="custom-select" name="year", id="bill_history_year_select">
+		<select class="form-control" name="year", id="bill_history_year_select">
 			<% (Time.current.year..2019).step(-1).to_a.each do |year| %>
 				<option <% if year == @year.to_i %> selected <% end %> value=<%= year %>><%= year %></option>
 			<% end %>

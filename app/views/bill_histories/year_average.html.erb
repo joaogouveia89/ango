@@ -2,13 +2,17 @@
 <h1 class="text-center title_padding">Média Anual</h1>
 <h4 class="text-center">Ano</h4>
 <div class="row items_grid_padding text-center">
-	<div class="col-lg-12">
+	<div class="col-lg-4">
+	</div>
+	<div class="col-lg-4">
 		<!-- TODO: REFACTOR THIS, THE CUSTOM SELECT CLASS IS NOT WORKING, FIND A WAY TO MAKE BOOTSTRAP CUSTOM FORMS TO WORK WITH RAILS  -->
-		<select class="custom-select" name="year", id="year_average_year_select">
+		<select class="form-control" name="year", id="year_average_year_select">
 			<% (Time.current.year..2019).step(-1).to_a.each do |year| %>
 				<option <% if year == @year.to_i %> selected <% end %> value=<%= year %>><%= year %></option>
 			<% end %>
 		</select>
+	</div>
+	<div class="col-lg-4">
 	</div>
 </div>
 <div class="row align-items-center">
