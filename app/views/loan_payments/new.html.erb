@@ -1,1 +1,35 @@
-<h1>Create an loan payment</h1>
+<% if @loan.errors.any? %>
+	 <h2>Erros ao salvar o registro de conta:</h2>
+	 <ul>
+	 <% @loan.errors.full_messages.each do |msg|%>
+	 <li><%= msg %></li>
+	 <% end %>
+	 </ul>
+<% end %>
+<%= form_for @loanPayment do |f| %>
+<div class="container">
+	<h1 class="text-center title_padding">Pagamento do empréstimo <%= @loan.description %> </h1>
+	<div class="row text-center items_grid_padding">
+		<div class="col-lg-12">
+			  <p>
+			  	<%= f.label :valor_a_amortizar  %><br/>
+			  	<div class="input-group input-group-lg">
+				  <div class="input-group-addon eurosymbolplace">
+				    <span class="input-group-text eurosymbolplace" id="inputGroup-sizing-lg">€</span>
+				  </div>
+				  <%= f.text_field :payed_value, class: 'form-control money-input ', placeholder: '00.00'  %>
+				</div>
+			  </p>
+		</div>
+	</div>
+	<%= f.hidden_field :loan_id, value: @loan.id %>
+	<div class="row text-center">
+		<div class="col-lg-12">
+			    <p>
+				 <%= f.submit 'Salvar', :class => 'btn btn-success btn-lg btn-block' %>
+				</p>
+		</div>
+	</div>
+</div>
+ </p>
+<% end %>

@@ -48,6 +48,6 @@ ActiveRecord::Schema.define(version: 2020_06_26_094841) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "bill_histories", "bills"
-  add_foreign_key "loan_payments", "loans"
+  add_foreign_key "bill_histories", "bills", on_delete: :cascade
+  add_foreign_key "loan_payments", "loans", on_delete: :cascade
 end
