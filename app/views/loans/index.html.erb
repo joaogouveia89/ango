@@ -1,19 +1,25 @@
-<h1>Lista de empréstimos</h1>
-<table>
- <tr>
-  <th>Descrição</th>
-  <th>Valor emprestado</th>
-  <th>Parcela</th>
-  <th>Criado em</th>
-  <th>Ações</th>
- </tr>
- <% @loans.each do |loan| %>
- <tr>
-  <td><%= loan.description %></td>
-  <td><%= loan.loaned_amount %></td>
-   <td><%= loan.default_installment %></td>
-  <td><%= loan.created_at.strftime("%d/%m/%Y") %></td>
-  <td><%= link_to 'Detalhes', loan_path(loan) %> <%= link_to 'Excluir', loan_path(loan), method: :delete, data: {confirm: "Deseja mesmo excluir esse emprestimo?"} %></td>
- </tr>
- <% end %>
-</table>
+<div class="container">
+  <h1 class="text-center title_padding">Lista de empréstimos</h1>
+  <table class="table table-striped">
+    <thead>
+       <tr>
+        <th class="text-center" scope="col">Descrição</th>
+        <th class="text-center" scope="col">Valor emprestado</th>
+        <th class="text-center" scope="col">Parcela</th>
+        <th class="text-center" scope="col">Criado em</th>
+        <th class="text-center" scope="col">Ações</th>
+       </tr>
+    </thead>
+    <tbody>
+       <% @loans.each do |loan| %>
+       <tr class="text-center">
+        <td><%= loan.description %></td>
+        <td>€ <%= loan.loaned_amount %></td>
+         <td>€ <%= loan.default_installment %></td>
+        <td><%= loan.created_at.strftime("%d/%m/%Y") %></td>
+        <td><%= link_to 'Pagar Parcela', loan_path(loan), class: "btn btn-success" %> &nbsp;&nbsp;<%= link_to 'Detalhes', loan_path(loan), class: "btn btn-primary" %> &nbsp;&nbsp;<%= link_to 'Excluir', loan_path(loan), class: "btn btn-danger", method: :delete, data: {confirm: "Deseja mesmo excluir esse emprestimo?"} %></td>
+       </tr>
+       <% end %>
+    </tbody>
+  </table>
+</div>

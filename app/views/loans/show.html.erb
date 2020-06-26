@@ -9,6 +9,8 @@
  Parcela Padrão : &#8364; <%= @loan.default_installment %>
 </p>
 
+<p><%= link_to "Pagar parcela", new_loan_payment_path(:loan_id => @loan.id) %></p>
+
 <p>
 Data de cadastro : <%= @loan.created_at.strftime("%d/%m/%Y") %>
 </p>

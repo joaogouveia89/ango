@@ -11,6 +11,7 @@ class LoansController < ApplicationController
 
 	def create
 		@loan = Loan.new(loan_params)
+		@loan.description.capitalize!
 		if @loan.save
 			flash[:notice] = "Emprestimo registrado com sucesso!"
 			redirect_to loan_path(@loan)
