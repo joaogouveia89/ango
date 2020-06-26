@@ -1,15 +1,13 @@
-<div class="container">
-	<h1 class="text-center items_grid_padding">Ango - Banco Andrade Gouveia</h1>
-	<div class="jumbotron appheader">
-		<div class="row text-center">
-			<div class="col-lg-12">
-				<h3 >Contas</h3>
-				<div class="alert alert-<%= @bills_message.bootstrap_bg %>" role="alert">
-				  <p class="alert-heading"> <%= @bills_message.message %> </p>
-				</div>
+
+<h1 class="text-center items_grid_padding">Ango - Banco Andrade Gouveia</h1>
+<div class="jumbotron appheader">
+	<div class="row text-center">
+		<div class="col-lg-12">
+			<h3 >Contas</h3>
+			<div class="alert alert-<%= @bills_message.bootstrap_bg %>" role="alert">
+			  <p class="alert-heading"> <%= @bills_message.message %> </p>
 			</div>
 		</div>
 	</div>
-	
 </div>
 <%= link_to 'About', about_path %>

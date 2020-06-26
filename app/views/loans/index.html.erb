@@ -1,15 +1,19 @@
-<div class="container">
-  <h1 class="text-center title_padding">Lista de empréstimos</h1>
-  <table class="table table-striped">
-    <thead>
-       <tr>
-        <th class="text-center" scope="col">Descrição</th>
-        <th class="text-center" scope="col">Valor emprestado</th>
-        <th class="text-center" scope="col">Valor quitado</th>
-        <th class="text-center" scope="col">Ações</th>
+<h1 class="text-center title_padding">Lista de empréstimos</h1>
+<table class="table table-striped">
+  <thead>
+     <tr>
+      <th class="text-center" scope="col">Descrição</th>
+      <th class="text-center" scope="col">Valor emprestado</th>
+      <th class="text-center" scope="col">Valor quitado</th>
+      <th class="text-center" scope="col">Ações</th>
+     </tr>
+  </thead>
+  <tbody>
+    <% if @loans.count == 0 %>
+       <tr class="text-center">
+        <td colspan="4"> Nenhum empréstimo registrado </td>
        </tr>
-    </thead>
-    <tbody>
+    <% else %>
        <% @loans.each do |loan| %>
        <tr class="text-center">
         <td><%= loan.description %></td>
@@ -18,7 +22,6 @@
         <td><%= link_to 'Pagar Parcela', new_loan_payment_path(:loan_id => loan.id), class: "btn btn-success" %> &nbsp;&nbsp;<%= link_to 'Detalhes', loan_path(loan), class: "btn btn-primary" %> &nbsp;&nbsp;<%= link_to 'Excluir', loan_path(loan), class: "btn btn-danger", method: :delete, data: {confirm: "Deseja mesmo excluir esse emprestimo?"} %></td>
        </tr>
        <% end %>
-    </tbody>
-  </table>
-</div>
- 
+     <% end %>
+  </tbody>
+</table>

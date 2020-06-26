@@ -7,50 +7,48 @@
 	 </ul>
 <% end %>
 <%= form_for @bill_history do |f| %>
-<div class="container">
-	<div class="row text-center">
-		<div class="col-lg-12">
+<div class="row text-center">
+	<div class="col-lg-12">
+	  <p>
+		  <%= f.label :conta %><br/>
+		  <%= f.select :bill_id, options_for_select(Bill.all.map { |bill|[bill.name, bill.id]  }), {}, class: "form-control text-center" %><br/>
+	  </p>
+	</div>
+</div>
+<div class="row text-center">
+	<div class="col-lg-12">
+		<p>
+		  <%= f.label :mes %><br/>
+		  <%= f.select :month, options_for_select((1..12).step(1).to_a.map{|s| ["#{s}", s]}, @bill_history.month), {}, class: "form-control text-center" %><br/>
+	    </p>
+	</div>
+</div>
+<div class="row text-center">
+	<div class="col-lg-12">
 		  <p>
-			  <%= f.label :conta %><br/>
-			  <%= f.select :bill_id, options_for_select(Bill.all.map { |bill|[bill.name, bill.id]  }), {}, class: "form-control text-center" %><br/>
+		  <%= f.label :ano %><br/>
+		  <%= f.select :year, options_for_select((Time.current.year..2019).step(-1).to_a.map{|s| ["#{s}", s]}, @bill_history.year), {}, class: "form-control text-center"  %><br/>
+	  </p>
+	</div>
+</div>
+<div class="row text-center items_grid_padding">
+	<div class="col-lg-12">
+		  <p>
+		  	<%= f.label :valor %><br/>
+		  	<div class="input-group input-group-lg">
+			  <div class="input-group-addon eurosymbolplace">
+			    <span class="input-group-text eurosymbolplace" id="inputGroup-sizing-lg">€</span>
+			  </div>
+			  <%= f.text_field :value, class: 'form-control money-input ', placeholder: '00.00'  %>
+			</div>
 		  </p>
-		</div>
 	</div>
-	<div class="row text-center">
-		<div class="col-lg-12">
-			<p>
-			  <%= f.label :mes %><br/>
-			  <%= f.select :month, options_for_select((1..12).step(1).to_a.map{|s| ["#{s}", s]}, @bill_history.month), {}, class: "form-control text-center" %><br/>
-		    </p>
-		</div>
-	</div>
-	<div class="row text-center">
-		<div class="col-lg-12">
-			  <p>
-			  <%= f.label :ano %><br/>
-			  <%= f.select :year, options_for_select((Time.current.year..2019).step(-1).to_a.map{|s| ["#{s}", s]}, @bill_history.year), {}, class: "form-control text-center"  %><br/>
-		  </p>
-		</div>
-	</div>
-	<div class="row text-center items_grid_padding">
-		<div class="col-lg-12">
-			  <p>
-			  	<%= f.label :valor %><br/>
-			  	<div class="input-group input-group-lg">
-				  <div class="input-group-addon eurosymbolplace">
-				    <span class="input-group-text eurosymbolplace" id="inputGroup-sizing-lg">€</span>
-				  </div>
-				  <%= f.text_field :value, class: 'form-control money-input ', placeholder: '00.00'  %>
-				</div>
-			  </p>
-		</div>
-	</div>
-	<div class="row text-center">
-		<div class="col-lg-12">
-			    <p>
-				 <%= f.submit 'Salvar', :class => 'btn btn-success btn-lg btn-block' %>
-				</p>
-		</div>
+</div>
+<div class="row text-center">
+	<div class="col-lg-12">
+		    <p>
+			 <%= f.submit 'Salvar', :class => 'btn btn-success btn-lg btn-block' %>
+			</p>
 	</div>
 </div>
  </p>

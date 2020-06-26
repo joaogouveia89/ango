@@ -8,49 +8,47 @@
 	 </ul>
 <% end %>
 <%= form_for @loan do |f| %>
-<div class="container">
-	<h1 class="text-center title_padding">Novo Emprestimo</h1>
-	<div class="row text-center items_grid_padding">
-		<div class="col-lg-12">
-		  <p>
-			  <%= f.label :descricao %><br/>
-			  <%= f.text_field :description, class: 'form-control'%>
-		  </p>
-		</div>
-	</div>
-	<div class="row text-center items_grid_padding">
-		<div class="col-lg-12">
-			  <p>
-			  	<%= f.label :valor_do_emprestimo  %><br/>
-			  	<div class="input-group input-group-lg">
-				  <div class="input-group-addon eurosymbolplace">
-				    <span class="input-group-text eurosymbolplace" id="inputGroup-sizing-lg">€</span>
-				  </div>
-				  <%= f.text_field :loaned_amount, class: 'form-control money-input ', placeholder: '00.00'  %>
-				</div>
-			  </p>
-		</div>
-	</div>
-	<div class="row text-center items_grid_padding">
-		<div class="col-lg-12">
-			  <p>
-			  	<%= f.label :valor_da_parcela  %><br/>
-			  	<div class="input-group input-group-lg">
-				  <div class="input-group-addon eurosymbolplace">
-				    <span class="input-group-text eurosymbolplace" id="inputGroup-sizing-lg">€</span>
-				  </div>
-				  <%= f.text_field :default_installment, class: 'form-control money-input ', placeholder: '00.00'  %>
-				</div>
-			  </p>
-		</div>
-	</div>
-	<div class="row text-center">
-		<div class="col-lg-12">
-			    <p>
-				 <%= f.submit 'Salvar', :class => 'btn btn-success btn-lg btn-block' %>
-				</p>
-		</div>
+<h1 class="text-center title_padding">Novo Emprestimo</h1>
+<div class="row text-center items_grid_padding">
+	<div class="col-lg-12">
+	  <p>
+		  <%= f.label :descricao %><br/>
+		  <%= f.text_field :description, class: 'form-control'%>
+	  </p>
 	</div>
 </div>
- </p>
+<div class="row text-center items_grid_padding">
+	<div class="col-lg-12">
+		  <p>
+		  	<%= f.label :valor_do_emprestimo  %><br/>
+		  	<div class="input-group input-group-lg">
+			  <div class="input-group-addon eurosymbolplace">
+			    <span class="input-group-text eurosymbolplace" id="inputGroup-sizing-lg">€</span>
+			  </div>
+			  <%= f.text_field :loaned_amount, class: 'form-control money-input ', placeholder: '00.00'  %>
+			</div>
+		  </p>
+	</div>
+</div>
+<div class="row text-center items_grid_padding">
+	<div class="col-lg-12">
+		  <p>
+		  	<%= f.label :valor_da_parcela  %><br/>
+		  	<div class="input-group input-group-lg">
+			  <div class="input-group-addon eurosymbolplace">
+			    <span class="input-group-text eurosymbolplace" id="inputGroup-sizing-lg">€</span>
+			  </div>
+			  <%= f.text_field :default_installment, class: 'form-control money-input ', placeholder: '00.00'  %>
+			</div>
+		  </p>
+	</div>
+</div>
+<div class="row text-center">
+	<div class="col-lg-12">
+		    <p>
+			 <%= f.submit 'Salvar', :class => 'btn btn-success btn-lg btn-block' %>
+			</p>
+	</div>
+</div>
+</p>
 <% end %>

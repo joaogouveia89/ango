@@ -13,7 +13,7 @@ class LoanPaymentsController < ApplicationController
 			redirect_to loan_path(Loan.find(@loanPayment.loan_id))
 		else
 			if @loanPayment.payed_value > @debts
-				flash[:notice] = "Voce está tentando pagar mais do que deve, seu debito é de somente € " + @debts.to_s
+				flash[:alert] = "Voce está tentando pagar mais do que deve, seu debito é de somente € " + @debts.to_s
 			end
 			render 'new'
 		end
