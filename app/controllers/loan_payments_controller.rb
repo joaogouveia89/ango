@@ -1,28 +1,34 @@
 class LoanPaymentsController < ApplicationController
-	before_action :get_loan, only: [:new]
-	before_action :get_loan_payments, only: [:new]
+	before_action :set_loan_payments, only: [:create]
+	
 	def new
 		@loanPayment = LoanPayment.new
-		@debt = @loan.loaned_amount - @payments.sum(:payed_value)
+		@loan = Loan.find(params[:loan_id])
 	end
 
 	def create
-		@loanPayment = LoanPayment.new(loan_payments_params)
-		if @loanPayment.save
+		get_debts @loanPayment.loan_id
+		if @loanPayment.payed_value <= @debts and @loanPayment.save
 			flash[:notice] = "Pagamento registrado com sucesso!"
 			redirect_to loan_path(Loan.find(@loanPayment.loan_id))
 		else
+			if @loanPayment.payed_value > @debts
+				flash[:notice] = "Voce está tentando pagar mais do que deve, seu debito é de somente € " + @debts.to_s
+			end
 			render 'new'
 		end
 	end
 
 	private
-	def get_loan
-		@loan = Loan.find(params[:loan_id])
+
+	def get_debts loan_id
+		@loan = Loan.find(loan_id)
+		@allLoanPayments = LoanPayment.where(loan_id: loan_id)
+		@debts = @debt = @loan.loaned_amount - @allLoanPayments.sum(:payed_value)
 	end
 
-	def get_loan_payments
-		@payments = LoanPayment.where(loan_id: @loan.id)
+	def set_loan_payments
+		@loanPayment = LoanPayment.new(loan_payments_params)
 	end
 
 	def loan_payments_params

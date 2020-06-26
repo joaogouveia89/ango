@@ -1,8 +1,9 @@
 class LoansController < ApplicationController
 	before_action :set_loan, only: [:show, :destroy]
+	helper_method :get_amount_paid
 
 	def index
-		@loans = Loan.all		
+		@loans = Loan.all	
 	end
 
 	def new
@@ -29,6 +30,10 @@ class LoansController < ApplicationController
 		@loan.destroy
 		flash[:notice] = "Emprestimo excluído com sucesso!"
 		redirect_to loans_path
+	end
+
+	def get_amount_paid loan
+		@amount_paid = LoanPayment.where(loan_id: loan.id).sum(:payed_value)
 	end
 
 	private

@@ -1,7 +1,7 @@
-<% if @loan.errors.any? %>
+<% if @loanPayment.errors.any? %>
 	 <h2>Erros ao salvar o registro de conta:</h2>
 	 <ul>
-	 <% @loan.errors.full_messages.each do |msg|%>
+	 <% @loanPayment.errors.full_messages.each do |msg|%>
 	 <li><%= msg %></li>
 	 <% end %>
 	 </ul>
