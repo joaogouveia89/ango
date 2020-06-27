@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   get 'get_bill_history/:month/:year' =>"bill_histories#get_bill_history"
 
   resources :loans, except: [:edit, :update]
-  resources :loan_payments
+  resources :loan_payments, only: [:new, :create, :destroy]
 end
