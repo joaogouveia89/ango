@@ -1,4 +1,5 @@
 class BillHistoriesController < ApplicationController
+	before_action :authenticate_user!
 	before_action :set_bill_history, only: [:edit, :update, :show, :destroy]
 
 	$monthsVerbose = {

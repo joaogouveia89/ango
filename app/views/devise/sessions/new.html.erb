@@ -1,0 +1,24 @@
+<h2 class="text-center title_padding">ANGO</h2>
+
+<div class="row justify-content-center align-items-center login-form-container">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <h3 class="text-center title_padding">Login</h3>
+    <div class="form-group">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :senha %><br />
+      <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Log in", :class => 'btn btn-primary btn-lg btn-block' %>
+    </div>
+    <% end %>
+  </div>
+  <div class="col-md-4"></div>
+</div>
+<%= render "devise/shared/links" %>
+

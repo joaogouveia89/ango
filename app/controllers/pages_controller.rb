@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+before_action :authenticate_user!
  def index
  	@bills_message  = get_bills_regarding_message
  end

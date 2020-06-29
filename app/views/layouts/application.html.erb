@@ -10,7 +10,9 @@
   </head>
 
   <body>
-    <%= render 'layouts/navigation' %>
+    <% if user_signed_in? %>
+      <%= render 'layouts/navigation' %>
+    <% end %>
   
   <div class="container">
     <% flash.each do |name, msg| %>
@@ -30,3 +32,5 @@
   </div>
   </body>
 </html>
+
+<!-- https://medium.com/@greenboyroshan/creating-user-signin-and-signup-in-rails-6-using-gem-devise-part-i-334745e4cd9b -->
