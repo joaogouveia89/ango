@@ -5,6 +5,7 @@
   <div class="col-md-4">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <h3 class="text-center title_padding">Login</h3>
+    <p class="text-center"><%= image_tag("couple-saving.png", :alt => "icon",  width: "250", height: "250", class: "img-fluid") %></p>
     <div class="form-group">
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
