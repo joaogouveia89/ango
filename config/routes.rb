@@ -12,5 +12,6 @@ Rails.application.routes.draw do
 
   resources :loans, except: [:edit, :update]
   resources :loan_payments, only: [:new, :create, :destroy]
+  resources :market_products
 
 end

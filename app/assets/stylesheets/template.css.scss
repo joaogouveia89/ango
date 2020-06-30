@@ -73,3 +73,14 @@ label{font-size: 30px;}
 .navbar-brand{
 	padding-top: 10px;
 }
+
+#produtoSearchInput{
+	background-image: url('ic_search.png');
+  	background-position: 10px 12px;
+  	background-repeat: no-repeat;
+  	width: 100%; /* Full-width */
+  	font-size: 16px; /* Increase font-size */
+  	padding: 12px 20px 12px 40px; /* Add some padding */
+ 	border: 1px solid #ddd; /* Add a grey border */
+  	margin-bottom: 12px; /* Add some space below the input */
+}

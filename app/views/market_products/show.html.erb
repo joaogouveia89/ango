@@ -1,0 +1,10 @@
+<h1>produto</h1>
+<p>
+ Nome: <%= @market_product.name %>
+</p>
+<p>
+ Departamento: <%= @market_product.department.name %>
+</p>
+<p>
+ Este produto <% if @market_product.is_in_current_list %> está <% else %> não está <% end %> na lista atual de compras
+</p>

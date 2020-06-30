@@ -1,0 +1,66 @@
+<h1 class="text-center title_padding">Lista de compras</h1>
+
+<div class="row">
+	<div class="col-lg-6">
+		<h2 class="text-center title_padding">Lista de compras atual</h2>
+		<table class="table table-striped">
+		  <thead>
+		     <tr>
+		      <th class="text-center" scope="col">Produto</th>
+		      <th class="text-center" scope="col">Departamento</th>
+		      <th class="text-center" scope="col">Preço</th>
+		     </tr>
+		  </thead>
+		  <tbody>
+		    <% if @products_in_current_list.count == 0 %>
+		       <tr class="text-center">
+		        <td colspan="3"> Nenhum produto na lista de compras </td>
+		       </tr>
+		    <% else %>
+		       <% @products_in_current_list.each do |product| %>
+		       <tr class="text-center">
+		        <td><%= product.name %></td>
+		        <td> <%= product.department.name %></td>
+		         <td>€ <%= number_with_precision(product.price, :precision => 2) %></td>
+		       </tr>
+		       <% end %>
+		     <% end %>
+		  </tbody>
+		</table>
+	</div>
+	<div class="col-lg-6">
+		<h2 class="text-center title_padding">Lista de produtos</h2>
+		<div class="input-group mb-3">
+		  <div class="input-group-addon">
+		    <span class="input-group-text" id="basic-addon1"><%= image_tag("ic_search.png", :alt => "icon",  width: "15", height: "15") %></span>
+		  </div>
+		  <input type="text" class="form-control" onkeyup="myFunction()" placeholder="Ex: Detergente" aria-label="Username" aria-describedby="basic-addon1">
+		</div>
+		<table class="table table-striped">
+		  <thead>
+		     <tr>
+		      <th class="text-center" scope="col">Produto</th>
+		      <th class="text-center" scope="col">Departamento</th>
+		      <th class="text-center" scope="col">Preço</th>
+		      <th class="text-center" scope="col">Colocar na lista atual</th>
+		     </tr>
+		  </thead>
+		  <tbody>
+		    <% if @products_in_current_list.count == 0 %>
+		       <tr class="text-center">
+		        <td colspan="3"> Nenhum produto na lista de compras </td>
+		       </tr>
+		    <% else %>
+		       <% @products.each do |product| %>
+		       <tr class="text-center">
+		        <td><%= product.name %></td>
+		        <td> <%= product.department.name %></td>
+		        <td>€ <%= number_with_precision(product.price, :precision => 2) %></td>
+		        <td><input type="checkbox" id="<%= product.id %>" name="<%= product.id %>" <% if product.is_in_current_list %> checked <% end %> ></td>
+		       </tr>
+		       <% end %>
+		     <% end %>
+		  </tbody>
+		</table>
+	</div>
+</div>
