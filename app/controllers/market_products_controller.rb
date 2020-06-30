@@ -5,7 +5,7 @@ class MarketProductsController < ApplicationController
 		# I prefer make one loop to feed these two lists, insted of doing two active records search
 		@products_in_current_list = []
 		@products = []
-		MarketProduct.all.each do | product |
+		MarketProduct.all.order(:name).each do | product |
 			if product.is_in_current_list
 				@products_in_current_list << product
 			end

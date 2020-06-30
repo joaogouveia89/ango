@@ -30,6 +30,7 @@
 	</div>
 	<div class="col-lg-6">
 		<h2 class="text-center title_padding">Lista de produtos</h2>
+		<p class="text-right"><%= link_to "Novo Produto", new_market_product_path, class: "btn btn-primary" %></p>
 		<div class="input-group mb-3">
 		  <div class="input-group-addon">
 		    <span class="input-group-text" id="basic-addon1"><%= image_tag("ic_search.png", :alt => "icon",  width: "15", height: "15") %></span>
@@ -53,7 +54,7 @@
 		    <% else %>
 		       <% @products.each do |product| %>
 		       <tr class="text-center">
-		        <td><%= product.name %></td>
+		        <td><%= link_to product.name, market_product_path(product.id) %></td>
 		        <td> <%= product.department.name %></td>
 		        <td>€ <%= number_with_precision(product.price, :precision => 2) %></td>
 		        <td><input type="checkbox" id="<%= product.id %>" name="<%= product.id %>" <% if product.is_in_current_list %> checked <% end %> ></td>
