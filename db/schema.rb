@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_27_082840) do
+ActiveRecord::Schema.define(version: 2020_06_30_082512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,13 @@ ActiveRecord::Schema.define(version: 2020_06_27_082840) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "departments", force: :cascade do |t|
+    t.string "name"
+    t.string "icon_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "loan_payments", force: :cascade do |t|
     t.bigint "loan_id"
     t.decimal "payed_value"
@@ -48,6 +55,16 @@ ActiveRecord::Schema.define(version: 2020_06_27_082840) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "market_products", force: :cascade do |t|
+    t.string "name"
+    t.bigint "department_id"
+    t.decimal "price"
+    t.boolean "is_in_current_list"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["department_id"], name: "index_market_products_on_department_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -62,4 +79,5 @@ ActiveRecord::Schema.define(version: 2020_06_27_082840) do
 
   add_foreign_key "bill_histories", "bills", on_delete: :cascade
   add_foreign_key "loan_payments", "loans", on_delete: :cascade
+  add_foreign_key "market_products", "departments", on_delete: :cascade
 end

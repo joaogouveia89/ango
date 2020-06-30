@@ -6,23 +6,44 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-bills = Bill.create(
-	[
-		{
-			name: "Agua",
-			image_icon: "drop"
-		},
-		{ 
-			name: "Energia",
-			image_icon: "light"
-		},
-		{
-			name: "Internet",
-			image_icon: "wifi"
-		},
-		{
-			name: "Cartao de Credito",
-			image_icon: "card"
-		}
-	]
-)
+if Bill.count == 0
+	bills = Bill.create(
+		[
+			{
+				name: "Agua",
+				image_icon: "drop"
+			},
+			{ 
+				name: "Energia",
+				image_icon: "light"
+			},
+			{
+				name: "Internet",
+				image_icon: "wifi"
+			},
+			{
+				name: "Cartao de Credito",
+				image_icon: "card"
+			}
+		]
+	)
+end
+
+if Department.count == 0
+	department = Department.create(
+		[
+			{
+				name: "Alimentação",
+				icon_id: "department-alimentacao"
+			},
+			{
+				name: "Higiene",
+				icon_id: "department-higiene"
+			},
+			{
+				name: "Limpeza",
+				icon_id: "department-limpeza"
+			}
+		]
+	)
+end
