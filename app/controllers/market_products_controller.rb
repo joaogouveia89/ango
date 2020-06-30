@@ -1,5 +1,5 @@
 class MarketProductsController < ApplicationController
-	before_action :set_market_product, only: [:show, :edit, :update, :destroy]
+	before_action :set_market_product, only: [:show, :edit, :update, :destroy, :add_remove_from_list]
 
 	def index
 		# I prefer make one loop to feed these two lists, insted of doing two active records search
@@ -36,11 +36,21 @@ class MarketProductsController < ApplicationController
 	def update
 		if @market_product.update(market_product_params)
 			flash[:notice] = "Produto atualizado"
-   			redirect_to article_path(@article)
+   			redirect_to market_product_path(@article)
    		else
 			flash[:notice] = "Produto não atualizado"
-			render 'edit'
+			render 'index'
    		end
+	end
+
+	def add_remove_from_list
+		@market_product.is_in_current_list ^= true
+		if @market_product.save
+   			redirect_to market_products_path
+   		else
+			flash[:notice] = "Problema ao atualizar o produto"
+			render 'index'
+		end
 	end
 
 	private

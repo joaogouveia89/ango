@@ -15,6 +15,8 @@ require("bootstrap-datepicker")
 require("../custom/distribution_calculator");
 require("../custom/year_average");
 require("../custom/bill_history");
+require("../custom/market_products");
+
 
 
 

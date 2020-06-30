@@ -1,0 +1,52 @@
+<%= form_for @market_product do |f| %>
+<div class="row">
+	<div class="col-lg-4"></div>
+	<div class="col-lg-4">
+		 <p>
+		  <%= f.label :nome, class: "market-product-label" %><br>
+		  <%= f.text_field :name, class: "form-control" %>
+		 </p>
+	</div>
+	<div class="col-lg-4"></div>
+</div>
+ <div class="row">
+ 	<div class="col-lg-4"></div>
+	<div class="col-lg-4">
+		 <p>
+		  <%= f.label :departamento, class: "market-product-label" %><br>
+		  <%= f.select :department_id, options_for_select(Department.all.map { |department|[department.name, department.id]  }, @market_product.department_id), {}, class: "form-control text-center"%><br/>
+		 </p>
+	</div>
+	<div class="col-lg-4"></div>
+</div>
+<div class="row">
+	<div class="col-lg-4"></div>
+	<div class="col-lg-4">
+		 <p>
+		  <%= f.label :preco, class: "market-product-label" %><br>
+		   <%= f.text_field :price, class: 'form-control money-input ', placeholder: '00.00', :value => '0.00'  %>
+		 </p>
+	</div>
+	<div class="col-lg-4"></div>
+</div>
+<div class="row">
+	<div class="col-lg-4"></div>
+	<div class="col-lg-4">
+		 <div class="form-check">
+			  <%= f.check_box :is_in_current_list, class: "form-check-input", id: "is_present_checkbox" %>
+	  		  <%= f.label :colocar_na_lista_de_compras, for:"is_present_checkbox", class: "form-check-label market-product-label" %>
+		 </div>
+		 </p>
+	</div>
+	<div class="col-lg-4"></div>
+</div>
+<div class="row">
+	<div class="col-lg-4"></div>
+	<div class="col-lg-4">
+		<p>
+			<%= f.submit "Salvar", :class => 'btn btn-success btn-lg btn-block' %>
+		</p>
+	</div>
+	<div class="col-lg-4"></div>
+</div>
+<% end %>

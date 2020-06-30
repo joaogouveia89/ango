@@ -57,7 +57,7 @@
 		        <td><%= link_to product.name, market_product_path(product.id) %></td>
 		        <td> <%= product.department.name %></td>
 		        <td>€ <%= number_with_precision(product.price, :precision => 2) %></td>
-		        <td><input type="checkbox" id="<%= product.id %>" name="<%= product.id %>" <% if product.is_in_current_list %> checked <% end %> ></td>
+		        <td><input type="checkbox" name="market_product_is_in_list" value="<%= product.id %>" <% if product.is_in_current_list %> checked <% end %> ></td>
 		       </tr>
 		       <% end %>
 		     <% end %>

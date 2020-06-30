@@ -1,22 +1,2 @@
-<h1>Novo produto</h1>
-<%= form_for @market_product do |f| %>
- <p>
-  <%= f.label :nome %><br>
-  <%= f.text_field :name %>
- </p>
- <p>
-  <%= f.label :departamento %><br>
-  <%= f.select :department_id, options_for_select(Department.all.map { |department|[department.name, department.id]  }), {}, class: "form-control text-center" %><br/>
- </p>
- <p>
-  <%= f.label :preco %><br>
-  <%= f.text_field :price %>
- </p>
- <p>
-  <%= f.label :esta_presente_na_lista_de_compras_atual %><br>
-  <%= f.check_box :is_in_current_list %>
- </p>
- <p>
-  <%= f.submit %>
- </p>
-<% end %>
+<h1 class="text-center">Novo produto</h1>
+<%= render 'form' %>
