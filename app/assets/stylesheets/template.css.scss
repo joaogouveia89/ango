@@ -5,6 +5,7 @@ $navbar-default-link-active-color: $navbar-default-link-color;
 $darkGreen: #248E38;
 $lightGreen: #afd91a;
 $white: #FFFFFF;
+$logoGreen: #40A798;
 
 
 @import "bootstrap-sprockets";
@@ -58,4 +59,17 @@ label{font-size: 30px;}
 
 .login-form-container{
 	font-family: "Roboto", sans-serif;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+    background-color: $logoGreen;
+    border-color:  $logoGreen;
+}
+
+.navbar-brand{
+	padding-top:10px;
 }

@@ -8,7 +8,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "Ango", root_path, class: "navbar-brand", id: "logo" %>
+      <%= link_to root_path, class: "navbar-brand", id: "logo" do %>
+        <%= image_tag("navbar-ango-logo.png", :alt => "icon",  width: "40", height: "30") %>
+      <% end %>
+      
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
