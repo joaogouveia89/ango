@@ -2,6 +2,8 @@ class BillHistoriesController < ApplicationController
 	before_action :authenticate_user!
 	before_action :set_bill_history, only: [:edit, :update, :show, :destroy]
 
+	helper_method :get_column_size
+
 	$monthsVerbose = {
 		1 => "Janeiro",
 		2 => "Fevereiro",
@@ -67,7 +69,7 @@ class BillHistoriesController < ApplicationController
 	def year_average
 		@year = params[:year]
 		@averages = BillHistory.where(:year=> @year).group(:bill_id).average(:value)
-		@grid_size = calculate_grid_size @averages.count
+		@bills_per_row = 2
 		@averages_chart_data = {}
 		@averages.each do |bill, average|
 			bill_name = Bill.find(bill).name
@@ -81,12 +83,22 @@ class BillHistoriesController < ApplicationController
 		@year = params[:year]
 		@month = params[:month]
 		@bills = BillHistory.where(:year=> @year, :month=> @month)
-		@grid_size = calculate_grid_size @bills.count
 		@sum = @bills.sum(:value)
+		@bills_per_row = 2
 		render 'bill_history'
 	end
 
+	def get_column_size(index, list)
+		list_size = list.count
+		if ((index + 1) == list_size) and list.count % 2 != 0
+			12
+		else
+			6
+		end
+	end
+
  	private
+
 
  	def set_bill_history
  		@bill_history = BillHistory.find(params[:id])
@@ -94,13 +106,5 @@ class BillHistoriesController < ApplicationController
 
  	def bill_history_params
  		params.require(:bill_history).permit(:bill_id, :month, :year, :value)
- 	end
-
- 	def calculate_grid_size items_count
- 		@grid_size = items_count / 2
-		if @grid_size % 2 != 0
-			@grid_size = @grid_size + 1
-		end
-		@grid_size
  	end
 end
