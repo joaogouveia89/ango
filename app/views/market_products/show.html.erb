@@ -1,10 +1,30 @@
-<h1>produto</h1>
-<p>
- Nome: <%= @market_product.name %>
-</p>
-<p>
- Departamento: <%= @market_product.department.name %>
-</p>
-<p>
- Este produto <% if @market_product.is_in_current_list %> está <% else %> não está <% end %> na lista atual de compras
-</p>
+<h1 class="text-center title_padding"><%= @market_product.name %></h1>
+<div class="row text-center font-size-25">
+	<div class="col-sm-6">
+		Departamento
+	</div>
+	<div class="col-sm-6">
+		<%= @market_product.department.name %>
+	</div>
+</div>
+<hr/>
+<div class="row text-center font-size-25">
+	<div class="col-sm-6">
+		Preço
+	</div>
+	<div class="col-sm-6">
+		€ <%= number_with_precision(@market_product.price , :precision => 2) %>
+	</div>
+</div>
+<hr/>
+<div class="row text-center font-size-25">
+	<div class="col-sm-12">
+		Este produto <% if @market_product.is_in_current_list %> está <% else %> não está <% end %> na lista atual de compras
+	</div>
+</div>
+<hr/>
+<div class="row text-center title_padding">
+	<div class="col-sm-12">
+		 <%= link_to 'Voltar', market_products_path, class: "btn btn-primary margin-right-25"  %> <%= link_to 'Excluir', market_product_path(@market_product), method: :delete, data: {confirm: "Deseja mesmo excluir esse produto?"}, class: "btn btn-danger" %>
+	</div>
+</div>

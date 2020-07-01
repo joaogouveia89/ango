@@ -19,7 +19,11 @@ class MarketProductsController < ApplicationController
 
 	def create
 		@marketProduct = MarketProduct.new(market_product_params)
-		if @marketProduct.save
+		@marketProduct.name.capitalize!
+		if !MarketProduct.where(name: @marketProduct.name).empty?
+			flash[:notice] = "Produto ja existe"
+		   redirect_to market_products_path
+		elsif @marketProduct.save
 		   flash[:notice] = "Produto criado com sucesso"
 		   redirect_to market_product_path(@marketProduct)
 		  else
@@ -41,6 +45,12 @@ class MarketProductsController < ApplicationController
 			flash[:notice] = "Produto não atualizado"
 			render 'index'
    		end
+	end
+
+	def destroy
+		@market_product.destroy
+		flash[:notice] = "Produto excluído com sucesso"
+  		redirect_to market_products_path
 	end
 
 	def add_remove_from_list
