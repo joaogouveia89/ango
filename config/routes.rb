@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :loan_payments, only: [:new, :create, :destroy]
   resources :market_products
 
-  get 'add_remove_from_market_list/:id' => "market_products#add_remove_from_list" 
+  get 'add_remove_from_market_list/:id' => "market_products#add_remove_from_list"
+  get 'is_default_on_list/:id' => "market_products#change_is_default_on_list" 
+  get 'load_default_list' => "load_default_list"
 
 end

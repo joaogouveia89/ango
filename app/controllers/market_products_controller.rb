@@ -1,5 +1,6 @@
 class MarketProductsController < ApplicationController
-	before_action :set_market_product, only: [:show, :edit, :update, :destroy, :add_remove_from_list]
+	before_action :set_market_product, only: [:show, :edit, :update, :destroy, :add_remove_from_list, :change_is_default_on_list]
+	helper_method :has_items_in_list
 
 	def index
 		# I prefer make one loop to feed these two lists, insted of doing two active records search
@@ -63,6 +64,20 @@ class MarketProductsController < ApplicationController
 		end
 	end
 
+	def change_is_default_on_list
+		@market_product.is_default_in_list ^= true
+		if @market_product.save
+   			redirect_to market_products_path
+   		else
+			flash[:notice] = "Problema ao atualizar o produto"
+			render 'index'
+		end
+	end
+
+	def has_items_in_list
+		!MarketProduct.where(is_in_current_list: true).empty?
+	end
+
 	private
 
 	def set_market_product
@@ -70,6 +85,6 @@ class MarketProductsController < ApplicationController
 	end
 
 	def market_product_params
-		params.require(:market_product).permit(:name, :department_id, :price, :is_in_current_list)
+		params.require(:market_product).permit(:name, :department_id, :price, :is_in_current_list, :is_default_in_list)
 	end
 end

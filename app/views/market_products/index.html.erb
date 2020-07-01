@@ -31,7 +31,10 @@
 	<div class="col-lg-6">
 		<h2 class="text-center title_padding">Lista de produtos</h2>
 		<p class="text-right">
-			<%= link_to "Carregar lista padrão", new_market_product_path, class: "btn btn-primary" %>
+			<%= link_to "Carregar lista padrão", "#",
+			 :class => "btn btn-primary",
+			 :id => "bt_load_default_list",
+			 :data =>{:has_items_in_list => has_items_in_list } %>
 			<%= link_to "Novo Produto", new_market_product_path, class: "btn btn-primary" %>
 		</p>
 		<div class="input-group mb-3">
@@ -62,7 +65,7 @@
 		        <td> <%= product.department.name %></td>
 		        <td>€ <%= number_with_precision(product.price, :precision => 2) %></td>
 		        <td><input type="checkbox" name="market_product_is_in_list" value="<%= product.id %>" <% if product.is_in_current_list %> checked <% end %> ></td>
-		        <td><input type="checkbox" name="market_product_is_in_list" value="<%= product.id %>" <% if product.is_in_current_list %> checked <% end %> ></td>
+		        <td><input type="checkbox" name="market_product_is_default_in_list" value="<%= product.id %>" <% if product.is_default_in_list %> checked <% end %> ></td>
 		       </tr>
 		       <% end %>
 		     <% end %>

@@ -33,8 +33,19 @@
 	<div class="col-lg-4"></div>
 	<div class="col-lg-4">
 		 <div class="form-check">
-			  <%= f.check_box :is_in_current_list, class: "form-check-input", id: "is_present_checkbox" %>
-	  		  <%= f.label :colocar_na_lista_de_compras, for:"is_present_checkbox", class: "form-check-label market-product-label" %>
+			  <%= f.check_box :is_in_current_list, class: "form-check-input", id: "is_in_current_list_cb" %>
+	  		  <%= f.label :colocar_na_lista_de_compras, for:"is_in_current_list_cb", class: "form-check-label market-product-label" %>
+		 </div>
+		 </p>
+	</div>
+	<div class="col-lg-4"></div>
+</div>
+<div class="row">
+	<div class="col-lg-4"></div>
+	<div class="col-lg-4">
+		 <div class="form-check">
+			  <%= f.check_box :is_default_in_list, class: "form-check-input", id: "is_default_list_cb" %>
+	  		  <%= f.label :lista_padrao_de_compras, for:"is_default_list_cb", class: "form-check-label market-product-label" %>
 		 </div>
 		 </p>
 	</div>
