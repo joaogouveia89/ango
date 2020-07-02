@@ -16,9 +16,35 @@ function hideShowQuantidadesCollumn(shouldBeVisible){
  	}
 }
 
+function calculateMarketListSum(){
+	var total = 0;
+	var table = document.getElementById("marketListTable");
+	var rows = table.getElementsByTagName("tr");
+	for(i = 1; i < rows.length; i++){
+		var productValue = parseFloat(rows[i].getElementsByTagName("td")[2].textContent.replace("€","").trim());
+		var selectElement = rows[i].getElementsByTagName("td")[3].getElementsByTagName("select")[0];
+		var options = selectElement.getElementsByTagName("option");
+		var quantity = 1;
+		for(j = 0; j < options.length; j++){
+			if(options[j].selected){
+				quantity = options[j].value
+				break;
+			}
+		}
+		total += productValue * quantity;
+	}
+	return total;
+}
+
 $(document).on('turbolinks:load',function(){
 	var isQuantidadesCollumnVisible = false;
 	hideShowQuantidadesCollumn(isQuantidadesCollumnVisible);
+	$("#total_market_simulation").hide();
+
+	$("select[name='sel_product_quantity']").change(function(){
+		var sum = calculateMarketListSum();
+		$("#total_market_simulation").html("Total: € " + sum.toFixed(2));
+	})
 	
 	 $('input[name="market_product_is_in_list"]').change(function(){
 	 	var id = $(this).val();
@@ -55,19 +81,24 @@ $(document).on('turbolinks:load',function(){
 	 			location.reload();
 	 		}
 	 	});
-	 	//ajax call to the endpoint to redo the list
 	 });
 
 	 $("#bt_market_simulation").click(function(){
 	 	isQuantidadesCollumnVisible = !isQuantidadesCollumnVisible;
 	 	hideShowQuantidadesCollumn(isQuantidadesCollumnVisible);
 	 	if(isQuantidadesCollumnVisible){
+	 		var sum = calculateMarketListSum();
 	 		$("#bt_market_simulation").removeClass( "btn-primary" ).addClass( "btn-danger" );
 	 		$("#bt_market_simulation").html("Parar simulação");
+	 		$("#total_market_simulation").html("Total: € " + sum.toFixed(2));
+	 		$("#total_market_simulation").show();
 	 	}else{
 	 		$("#bt_market_simulation").removeClass( "btn-danger" ).addClass( "btn-primary" );
 	 		$("#bt_market_simulation").html("Simular compra");
+	 		$("#total_market_simulation").html("");
+	 		$("#total_market_simulation").hide();
 	 	}
+
 	 });
 
 	 $("#searchField").keyup(function(){
