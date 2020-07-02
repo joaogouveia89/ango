@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about'
   get 'distribution_calculation', to: 'pages#distribution_calculation'
 
-  resources :bill_histories
+  resources :bill_histories, except: [:index]
 
   get 'year_average/:year' => "bill_histories#year_average"
   get 'get_bill_history/:month/:year' =>"bill_histories#get_bill_history"
