@@ -27,7 +27,13 @@ $(document).on('turbolinks:load',function(){
 	 	if(hasItemsInList){
 	 		keepInListItems = confirm("A lista de compras ja tem alguns itens, deseja mante-los?");		
 	 	}
-
+	 	$.ajax({
+	 		url: "/load_default_list/" + keepInListItems,
+	 		type: "get",
+	 		success: function(data){
+	 			location.reload();
+	 		}
+	 	});
 	 	//ajax call to the endpoint to redo the list
 	 });
 

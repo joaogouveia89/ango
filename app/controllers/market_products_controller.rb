@@ -74,8 +74,29 @@ class MarketProductsController < ApplicationController
 		end
 	end
 
+	def load_default_list
+		@keepItemsSelectedList = ActiveModel::Type::Boolean.new.cast(params[:keep_selected])
+		
+		MarketProduct.all.each do |product|
+			if @keepItemsSelectedList
+				if product.is_default_in_list and !product.is_in_current_list
+					product.is_in_current_list = true
+					product.save
+				end
+			else
+				if product.is_in_current_list and !product.is_default_in_list
+					product.is_in_current_list = false
+					product.save
+				elsif product.is_default_in_list and !product.is_in_current_list
+					product.is_in_current_list = true
+					product.save
+				end
+			end
+		end
+	end
+
 	def has_items_in_list
-		!MarketProduct.where(is_in_current_list: true).empty?
+		!MarketProduct.where(:is_in_current_list => true, :is_default_in_list => false).empty?
 	end
 
 	private
