@@ -1,4 +1,25 @@
+function hideShowQuantidadesCollumn(shouldBeVisible){
+	var table = document.getElementById("marketListTable");
+ 	var titleRow = table.getElementsByTagName("th");
+ 	if(shouldBeVisible){
+		titleRow[3].classList.remove("hideTableCollumn");
+ 	}else{
+ 		titleRow[3].classList.add("hideTableCollumn");
+ 	}
+ 	var rows = table.getElementsByTagName("tr");
+ 	for(i = 1; i < rows.length; i++){
+ 		if(shouldBeVisible){
+			rows[i].getElementsByTagName("td")[3].classList.remove("hideTableCollumn");
+	 	}else{
+	 		rows[i].getElementsByTagName("td")[3].classList.add("hideTableCollumn");
+	 	}
+ 	}
+}
+
 $(document).on('turbolinks:load',function(){
+	var isQuantidadesCollumnVisible = false;
+	hideShowQuantidadesCollumn(isQuantidadesCollumnVisible);
+	
 	 $('input[name="market_product_is_in_list"]').change(function(){
 	 	var id = $(this).val();
 	 	$.ajax({
@@ -35,6 +56,18 @@ $(document).on('turbolinks:load',function(){
 	 		}
 	 	});
 	 	//ajax call to the endpoint to redo the list
+	 });
+
+	 $("#bt_market_simulation").click(function(){
+	 	isQuantidadesCollumnVisible = !isQuantidadesCollumnVisible;
+	 	hideShowQuantidadesCollumn(isQuantidadesCollumnVisible);
+	 	if(isQuantidadesCollumnVisible){
+	 		$("#bt_market_simulation").removeClass( "btn-primary" ).addClass( "btn-danger" );
+	 		$("#bt_market_simulation").html("Parar simulação");
+	 	}else{
+	 		$("#bt_market_simulation").removeClass( "btn-danger" ).addClass( "btn-primary" );
+	 		$("#bt_market_simulation").html("Simular compra");
+	 	}
 	 });
 
 	 $("#searchField").keyup(function(){

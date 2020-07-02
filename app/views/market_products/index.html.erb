@@ -4,12 +4,17 @@
 	<div class="col-lg-6">
 		<h2 class="text-center">Lista de compras atual</h2>
 		<h4 class="text-center title_padding">(<%= @products_in_current_list.count %> itens)</h4>
-		<table class="table table-striped">
+		<p class="text-right">
+			<a id="bt_market_simulation" class= "btn btn-primary">Simular compra</a>
+		</p>
+		
+		<table id="marketListTable" class="table table-striped">
 		  <thead>
 		     <tr>
 		      <th class="text-center" scope="col">Produto</th>
 		      <th class="text-center" scope="col">Departamento</th>
 		      <th class="text-center" scope="col">Preço</th>
+		      <th class="text-center" scope="col">Quantidade</th>
 		     </tr>
 		  </thead>
 		  <tbody>
@@ -23,6 +28,13 @@
 		        <td><%= product.name %></td>
 		        <td> <%= product.department.name %></td>
 		         <td>€ <%= number_with_precision(product.price, :precision => 2) %></td>
+		         <td>
+		         	<select>
+		         		<option selected>1</option>
+		         		<option>2</option>
+		         		<option>3</option>
+		         	</select>
+		         </td>
 		       </tr>
 		       <% end %>
 		     <% end %>
