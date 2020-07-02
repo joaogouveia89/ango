@@ -18,6 +18,19 @@ function hideShowQuantidadesCollumn(shouldBeVisible){
  	}
 }
 
+function configureScreenForSimulation(areButtonsEnabled){
+	console.log("passou aqui");
+	if(!areButtonsEnabled){
+		$("#bt_esvaziar_lista").addClass('disabled');
+		$("#bt_load_default_list").addClass('disabled');
+		$("#bt_new_product").addClass('disabled');
+	}else{
+		$("#bt_esvaziar_lista").removeClass('disabled');
+		$("#bt_load_default_list").removeClass('disabled');
+		$("#bt_new_product").removeClass('disabled');
+	}
+}
+
 function calculateMarketListSum(){
 	var total = 0;
 	var table = document.getElementById("marketListTable");
@@ -87,6 +100,7 @@ $(document).on('turbolinks:load',function(){
 
 	 $("#bt_market_simulation").click(function(){
 	 	isQuantidadesCollumnVisible = !isQuantidadesCollumnVisible;
+	 	configureScreenForSimulation(!isQuantidadesCollumnVisible);
 	 	hideShowQuantidadesCollumn(isQuantidadesCollumnVisible);
 	 	if(isQuantidadesCollumnVisible){
 	 		var sum = calculateMarketListSum();

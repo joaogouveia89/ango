@@ -5,6 +5,7 @@
 		<h2 class="text-center">Lista de compras atual</h2>
 		<h4 class="text-center title_padding">(<%= @products_in_current_list.count %> itens)</h4>
 		<p class="text-right">
+			<%= link_to "Esvaziar lista", "/clear_market_list", id: "bt_esvaziar_lista", class: "btn btn-danger" %>
 			<a id="bt_market_simulation" class= "btn btn-primary">Simular compra</a>
 		</p>
 		
@@ -53,7 +54,7 @@
 			 :class => "btn btn-primary",
 			 :id => "bt_load_default_list",
 			 :data =>{:has_items_in_list => has_items_in_list } %>
-			<%= link_to "Novo Produto", new_market_product_path, class: "btn btn-primary" %>
+			<%= link_to "Novo Produto", new_market_product_path, id:"bt_new_product", class: "btn btn-primary" %>
 		</p>
 		<div class="input-group mb-3">
 		  <div class="input-group-addon">
