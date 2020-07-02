@@ -61,7 +61,7 @@
 			    	 <% @payments.each do |payment| %>
 			    	 	<tr class="text-center">
 			    	 		<td><%= payment.created_at.strftime("%d/%m/%Y") %></td>
-			    	 		<td><%= payment.payed_value %></td>
+			    	 		<td>€ <%= number_with_precision(payment.payed_value , :precision => 2) %></td>
 			    	 	</tr>
 			    	 <% end %>
 			    	<% end %>

@@ -2,7 +2,7 @@ class BillHistoriesController < ApplicationController
 	before_action :authenticate_user!
 	before_action :set_bill_history, only: [:edit, :update, :show, :destroy]
 
-	helper_method :get_column_size
+	helper_method :get_column_size, :get_month_verbose
 
 	$monthsVerbose = {
 		1 => "Janeiro",
@@ -30,7 +30,7 @@ class BillHistoriesController < ApplicationController
  	def create
  		@bill_history = BillHistory.new(bill_history_params)
  		if @bill_history.save
- 			flash[:notice] = "Article was successfully created"
+ 			flash[:notice] = "Conta cadastrada com sucesso"
  			redirect_to bill_history_path(@bill_history)
  		else
  			render 'new'
