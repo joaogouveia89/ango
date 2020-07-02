@@ -1,17 +1,19 @@
 function hideShowQuantidadesCollumn(shouldBeVisible){
 	var table = document.getElementById("marketListTable");
  	var titleRow = table.getElementsByTagName("th");
+ 	var rows = table.getElementsByTagName("tr");
  	if(shouldBeVisible){
 		titleRow[3].classList.remove("hideTableCollumn");
  	}else{
  		titleRow[3].classList.add("hideTableCollumn");
  	}
- 	var rows = table.getElementsByTagName("tr");
- 	for(i = 1; i < rows.length; i++){
- 		if(shouldBeVisible){
-			rows[i].getElementsByTagName("td")[3].classList.remove("hideTableCollumn");
-	 	}else{
-	 		rows[i].getElementsByTagName("td")[3].classList.add("hideTableCollumn");
+ 	if(rows.length > 0 && rows[1].getElementsByTagName("td").length > 1){
+	 	for(i = 1; i < rows.length; i++){
+	 		if(shouldBeVisible){
+				rows[i].getElementsByTagName("td")[3].classList.remove("hideTableCollumn");
+		 	}else{
+		 		rows[i].getElementsByTagName("td")[3].classList.add("hideTableCollumn");
+		 	}
 	 	}
  	}
 }
