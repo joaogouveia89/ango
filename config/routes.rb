@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'pages#index'
   get 'about', to: 'pages#about'
   get 'distribution_calculation', to: 'pages#distribution_calculation'
+  get 'usefull_links', to: 'pages#usefull_links'
 
   resources :bill_histories, except: [:index]
 
