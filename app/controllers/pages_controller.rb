@@ -8,6 +8,9 @@ before_action :authenticate_user!
  def about
  end
 
+ def usefull_links
+ end
+
  def distribution_calculation
  end
 
