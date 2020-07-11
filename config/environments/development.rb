@@ -29,7 +29,7 @@ Rails.application.configure do
   end
 
   #CHANGE THIS IN EVERY NEW NGROK INSTANCE TO TEST ANDROID APP
-  config.hosts << "db1487d1ca3a.ngrok.io"
+  #config.hosts << "db1487d1ca3a.ngrok.io"
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
