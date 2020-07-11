@@ -6,7 +6,7 @@
 		<h4 class="text-center title_padding">(<%= @products_in_current_list.count %> itens)</h4>
 		<p class="text-right">
 			<%= link_to "Esvaziar lista", "/clear_market_list", id: "bt_esvaziar_lista", class: "btn btn-danger" %>
-			<a id="bt_market_simulation" class= "btn btn-primary">Simular compra</a>
+			<a id="bt_market_simulation" class= "btn btn-primary <% if @products_in_current_list.count == 0 %> disabled <% end %>">Simular compra</a>
 		</p>
 		
 		<table id="marketListTable" class="table table-striped">
