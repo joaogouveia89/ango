@@ -20,6 +20,11 @@ Rails.application.routes.draw do
   get 'load_default_list/:keep_selected' => "market_products#load_default_list"
   get 'clear_market_list' => "market_products#clear_market_list"
 
+  
+  namespace :api do
+     post 'apiauth' => "auth#auth"
+  end
+
   mount API::Base, at: "/"
 
 end
