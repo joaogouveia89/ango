@@ -1,4 +1,5 @@
 class MarketProductsController < ApplicationController
+	before_action :authenticate_user!
 	before_action :set_market_product, only: [:show, :edit, :update, :destroy, :add_remove_from_list, :change_is_default_on_list]
 	helper_method :has_items_in_list, :clear_market_list
 
