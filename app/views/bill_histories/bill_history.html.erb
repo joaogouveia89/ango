@@ -2,7 +2,6 @@
 <div class="row items_grid_padding text-center">
 	<div class="col-lg-6">
 		<h4 class="text-center">Mês</h4>
-		<!-- TODO: REFACTOR THIS, THE CUSTOM SELECT CLASS IS NOT WORKING, FIND A WAY TO MAKE BOOTSTRAP CUSTOM FORMS TO WORK WITH RAILS  -->
 		<select class="form-control" name="month", id="bill_history_month_select">
 			<% $monthsVerbose.each do |number, verbose| %>
 				<option <% if number == @month.to_i %> selected <% end %> value=<%= number %>><%= verbose %></option>
@@ -11,7 +10,6 @@
 	</div>
 	<div class="col-lg-6">
 		<h4 class="text-center">Ano</h4>
-		<!-- TODO: REFACTOR THIS, THE CUSTOM SELECT CLASS IS NOT WORKING, FIND A WAY TO MAKE BOOTSTRAP CUSTOM FORMS TO WORK WITH RAILS  -->
 		<select class="form-control" name="year", id="bill_history_year_select">
 			<% (Time.current.year..2019).step(-1).to_a.each do |year| %>
 				<option <% if year == @year.to_i %> selected <% end %> value=<%= year %>><%= year %></option>
@@ -29,6 +27,7 @@
 <% end %>
 <% @bills.each_with_index do | bill, index | %>
 	<% if collumn < @bills_per_row %>
+		<%= link_to bill_history_path bill.id do %>
 		<div align="center" class="col-lg-<%= get_column_size(index, @bills) %>">
 			<% @bill = Bill.find(bill.bill_id) %>
 			<p><%= image_tag(@bill.image_icon + ".png", :alt => "icon",  width: "100", height: "100") %></p>
@@ -36,11 +35,14 @@
 			<p class="grid_label">€ <%= number_with_precision(bill.value, :precision => 2) %></p>
 			<% collumn = collumn + 1 %>
 		</div>
+		<% end %>
+		
 	<% else %>
 		</div>
 		<div class="row align-items-center items_grid_padding">
 		<% collumn = 0 %>
 		<% row = row + 1 %>
+		<%= link_to bill_history_path bill.id do %>
 		<div align="center" class=col-lg-<%= get_column_size(index, @bills) %>>
 			<% @bill = Bill.find(bill.bill_id) %>
 			<p><%= image_tag(@bill.image_icon + ".png", :alt => "icon",  width: "100", height: "100") %></p>
@@ -48,6 +50,7 @@
 			<p class="grid_label">€ <%= number_with_precision(bill.value, :precision => 2) %></p>
 			<% collumn = collumn + 1 %>
 		</div>
+		<% end %>
 	<% end %>
 <% end %>
 <% if @bills.count != 0 %>

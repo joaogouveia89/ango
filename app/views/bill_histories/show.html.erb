@@ -31,7 +31,7 @@
 
 <div class="row text-center title_padding">
 	<div class="col-sm-12">
-		<%= link_to 'Voltar', root_path, class: "btn btn-primary margin-right-25" %>
+		<%= link_to 'Voltar', get_bill_history_url(@bill_history.month, @bill_history.year), class: "btn btn-primary margin-right-25" %>
 		<%= link_to 'Editar', edit_bill_history_path(@bill_history), class: "btn btn-primary margin-right-25" %>
 		<%= link_to 'Excluir', bill_history_path(@bill_history), method: :delete, data: {confirm: "Deseja mesmo excluir esse registro de conta?"}, class: "btn btn-danger" %>
 	</div>
