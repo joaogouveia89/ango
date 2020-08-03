@@ -44,6 +44,7 @@ class LoansController < ApplicationController
 	end
 
 	def loan_params
+		params.require(:loan)[:loaned_amount].sub! ",", ""
 		params.require(:loan).permit(:description, :loaned_amount, :default_installment)
 	end
 end
