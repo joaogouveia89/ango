@@ -105,6 +105,7 @@ class BillHistoriesController < ApplicationController
  	end
 
  	def bill_history_params
+ 		params.require(:bill_history)[:value].sub! ",", ""
  		params.require(:bill_history).permit(:bill_id, :month, :year, :value)
  	end
 end
