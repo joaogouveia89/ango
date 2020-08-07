@@ -5,21 +5,13 @@
 			<%= image_tag("index.png", :alt => "icon") %>
 		</div>
 	</div>
-<div class="jumbotron appheader">
-	<h3 class="items_grid_padding text-center" >Mensagens</h3>
+<div class="jumbotron">
 	<div class="row text-center">
 		<div class="col-lg-12">
-			
-			<div class="alert alert-<%= @bills_message.bootstrap_bg %>" role="alert">
-			  <p class="alert-heading"> <%= @bills_message.message %> </p>
-			</div>
-		</div>
-	</div>
-	<div class="row text-center">
-		<div class="col-lg-12">
-			<div class="alert alert-<%= @debs_message.bootstrap_bg %>" role="alert">
-			  <p class="alert-heading"> <%= @debs_message.message %> </p>
-			</div>
+			<blockquote class="blockquote text-center">
+			  <p class="mb-0"><%= @quote.quote %></p>
+			  <footer class="blockquote-footer"><%= @quote.author %></footer>
+			</blockquote>
 		</div>
 	</div>
 </div>
