@@ -29,7 +29,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sassc-rails', '>= 2.1.0'
-gem "chartkick"
+gem "chartkick", '~> 3.4.0'
 gem 'devise'
 gem 'grape'
 gem 'rack-cors'
