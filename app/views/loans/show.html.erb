@@ -1,8 +1,15 @@
 
 <h1 class="text-center title_padding">Empréstimo <%= @loan.description %></h1>
+<div class="row title_padding">
+	<h2 class="text-center">Progresso</h1>
+	<div class="progress">
+	  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: <%= @loan.percentage_paid_off %>%" aria-valuenow="<%= @loan.percentage_paid_off %>" aria-valuemin="0" aria-valuemax="100"></div>
+	</div>
+	<hr/>
+</div>
 <div class="row text-center font-size-25">
 	<div class="col-sm-6">
-		Montante
+		Valor emprestado
 	</div>
 	<div class="col-sm-6">
 		&#8364; <%= number_with_precision(@loan.loaned_amount, :precision => 2) %>
@@ -11,19 +18,10 @@
 <hr/>
 <div class="row text-center font-size-25">
 	<div class="col-sm-6">
-		Parcela Padrão
+		Valor ja pago
 	</div>
 	<div class="col-sm-6">
-		&#8364; <%= number_with_precision(@loan.default_installment , :precision => 2) %>
-	</div>
-</div>
-<hr/>
-<div class="row text-center font-size-25">
-	<div class="col-sm-6">
-		Dívida
-	</div>
-	<div class="col-sm-6">
-		&#8364; <%= number_with_precision(@debt , :precision => 2) %>
+		&#8364; <%= number_with_precision(@loan.amount_paid , :precision => 2) %>
 	</div>
 </div>
 <hr/>

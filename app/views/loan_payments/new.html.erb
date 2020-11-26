@@ -9,9 +9,10 @@
 <%= form_for @loanPayment do |f| %>
 <h1 class="text-center title_padding">Pagamento do empréstimo <%= @loan.description %> </h1>
 <div class="row text-center items_grid_padding">
-	<div class="col-lg-12">
+	<div class="col-lg-4"></div>
+	<div class="col-lg-4">
 		  <p>
-		  	<%= f.label :valor_a_amortizar  %><br/>
+		  	<div class="title_padding"><%= f.label :valor_a_amortizar  %></div>
 		  	<div class="input-group input-group-lg">
 			  <div class="input-group-addon eurosymbolplace">
 			    <span class="input-group-text eurosymbolplace" id="inputGroup-sizing-lg">€</span>
@@ -20,14 +21,17 @@
 			</div>
 		  </p>
 	</div>
+	<div class="col-lg-4"></div>
 </div>
 <%= f.hidden_field :loan_id, value: @loan.id %>
 <div class="row text-center">
-	<div class="col-lg-12">
+	<div class="col-lg-4"></div>
+	<div class="col-lg-4">
 		    <p>
 			 <%= f.submit 'Salvar', :class => 'btn btn-success btn-lg btn-block' %>
 			</p>
 	</div>
+	<div class="col-lg-4"></div>
 </div>
  </p>
 <% end %>

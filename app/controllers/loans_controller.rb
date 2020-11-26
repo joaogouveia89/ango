@@ -24,7 +24,6 @@ class LoansController < ApplicationController
 
 	def show
 		@payments = LoanPayment.where(loan_id: @loan.id)
-		@debt = @loan.loaned_amount - @payments.sum(:payed_value)
 	end
 
 	def destroy
