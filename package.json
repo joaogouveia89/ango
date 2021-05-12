@@ -8,7 +8,7 @@
     "@rails/webpacker": "4.2.2",
     "bootstrap": "^4.5.0",
     "bootstrap-datepicker": "^1.9.0",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "chartkick": "^3.2.0",
     "inputmask": "^5.0.3",
     "jquery": "^3.5.1",
